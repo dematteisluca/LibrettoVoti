@@ -10,10 +10,62 @@ public class Libretto {
 	public Libretto() {
 		this.voti = new ArrayList<Voto>() ;
 	}
+	
+ /**
+  * Aggiunge un nuovo voto al libretto
+  * @param v {@link V
+  */
 		
-	public void add(Voto v) {
+	public boolean add(Voto v) {
+		if (!this.VotoGiaPresente(v) && !this.VotoConflitto(v)) {
+			voti.add(v);
+			return true;
+		} else {
+			return false;
+		}
+	
 		
 	}
-
-	
+   
+   public List<Voto> cercaVoti(int voto) {
+	   List<Voto> result= new ArrayList<Voto>();
+	   
+	   for(Voto v: this.voti) {
+		   if(v.getVoto()>=voto) {
+			   result.add(v);
+		   }
+	   }
+	   return result;
+   }
+	   
+   public Voto CercaCorso(String nomeCorso) {
+	   Voto voto= new Voto (0, nomeCorso, null);
+	  int pos= this.voti.indexOf(voto) ; 
+	  if (pos==-1)
+	   return null;
+	  else 
+		  return this.voti.get(pos);
+   }
+	  public boolean VotoGiaPresente (Voto v) 
+	  {
+		  int pos= this.voti.indexOf(v);
+		  if (pos==-1)
+			  return false;
+		  else
+		  return ( v.getVoto() == this.voti.get(pos).getVoto());
+		  
+	  }
+	  public boolean VotoConflitto (Voto v) 
+	  {
+		  int pos= this.voti.indexOf(v);
+		  if (pos==-1)
+			  return false;
+		  else
+		  return ( v.getVoto() == this.voti.get(pos).getVoto());
+		  
+   }
+	  public String toString() {
+		  return this.voti.toString();
+	  }
 }
+

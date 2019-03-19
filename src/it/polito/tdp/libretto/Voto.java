@@ -37,6 +37,10 @@ public class Voto {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
+	 
+	public String stampa () {
+		return voto+" "+corso+" "+data;
+		
+	}
 	
 }

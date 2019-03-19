@@ -43,4 +43,8 @@ public class Voto {
 		
 	}
 	
+	public Voto clone() {
+		return new Voto(this.voto, this.corso, this.data);
+	}
+	
 }

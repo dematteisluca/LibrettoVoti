@@ -67,5 +67,30 @@ public class Libretto {
 	  public String toString() {
 		  return this.voti.toString();
 	  }
+	  public Libretto LibrettoMigliorato() {
+		  Libretto nuovo= new Libretto();
+		  for(Voto v: this.voti) {
+			  nuovo.add(v.clone());
+			  
+		  }
+		  for (Voto v: nuovo.voti) {
+			  int punti = v.getVoto();
+			  if (punti<24)
+				  punti= punti +1;
+			  else if (punti<=28)
+				  punti = punti +1;
+			  v.setVoto(punti);
+		  }
+		  return nuovo;
+	  }
+	  public void cancellaVotiScarsi() {
+		  List cancellare = new ArrayList<Voto>();
+		  for(Voto v: this.voti) {
+			  if(v.getVoto()<24) {
+				  cancellare.add(v);
+			  }
+		  }
+		  this.voti.removeAll(cancellare);
+	  }
 }
 
